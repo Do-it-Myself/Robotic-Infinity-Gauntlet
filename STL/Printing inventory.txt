@@ -1,0 +1,33 @@
+Arm (Copper):
+Arm Back x 1
+Arm Front x 1
+Arm Upper Lid x 1
+
+Base (Black):
+Base Bottom x 1
+Base Middle x 1
+Base Top x 1
+
+Fingers (Copper):
+Finger Body 1 x 2
+Finger Body 2 x 2
+Finger Body 3 x 2
+Finger Body 4 x 2
+Finger Body 5 x 2
+Finger Moon x 2
+Finger Tip x 5
+Finger Top x 5
+Thumb Joint x 1
+
+Hand (Copper):
+Hand Back x 1
+Hand Bottom Decoration Back x 1
+Hand Bottom Decoration Front x 1
+Hand Front x 1
+Hand Lid x 1
+Hand Top Decoration x 2
+Thumb Joint x 1
+
+Servo (Copper):
+String Holder x 1
+Bed x 1
