@@ -1,5 +1,6 @@
 # Youtube: https://www.youtube.com/watch?v=oIGZ6aYh9LU&ab_channel=AISciences
 # GitHub: https://github.com/AISCIENCES/Ytube-finger-counter/blob/main/main.py
+# Library for OpenCV & Mediapipe: https://pypi.org/project/mediapipe-rpi4/
 
 # This code is for right hand
 
@@ -10,8 +11,8 @@ cap = cv2.VideoCapture(0)
 mpHands = mp.solutions.hands # hands.py module
 hands = mpHands.Hands() # object with class "Hands" in hands.py module
 mpDraw = mp.solutions.drawing_utils
-thumbCoordinate = (4, 3)
-fingerCoordinates = [(8, 6), (12, 11), (16, 15), (20, 19)]
+thumbCoordinate = (4, 3, 2, 1, 0)
+fingerCoordinates = [(8, 7, 6, 5), (12, 11, 10, 9), (16, 15, 14, 13), (20, 19, 18, 17)]
 
 while True:
     success, img = cap.read()
@@ -33,18 +34,50 @@ while True:
                 cx, cy = int(lm.x * width), int(lm.y * height)
                 handPoints.append((cx, cy))
 
-        count = [0,0,0,0,0]
+        # label hand points
+        for point in handPoints:
+            cv2.circle(img, point, 5, (0, 0, 255), cv2.FILLED)
 
-        # thumb
-        if handPoints[thumbCoordinate[0]][0] > handPoints[thumbCoordinate[1]][0]: # less than for left hand
-            count[0] += 1
+        count = ["0", "0", "0", "0", "0"]
+        word = "Nothing"
 
-        # other fingers
-        for index, coordinates in enumerate(fingerCoordinates):
-            if handPoints[coordinates[0]][1] < handPoints[coordinates[1]][1]:
-                count[index + 1] += 1
+        # detect left or right hand
+        rightHand = False
 
-        cv2.putText(img, str(count), (40,100), cv2.FONT_HERSHEY_PLAIN, 3, (255,0,0), 3)
+        if handPoints[fingerCoordinates[0][3]][0] > handPoints[fingerCoordinates[3][3]][0]:
+            rightHand = True
+        
+        # detect whether hand is upright or not
+        condi1 = handPoints[thumbCoordinate[3]][1] > handPoints[thumbCoordinate[4]][1]
+        condi2 = handPoints[fingerCoordinates[3][3]][1] > handPoints[thumbCoordinate[4]][1]
+        condi3_right = handPoints[fingerCoordinates[0][3]][0] < handPoints[thumbCoordinate[4]][0]
+        condi3_left = handPoints[fingerCoordinates[0][3]][0] > handPoints[thumbCoordinate[4]][0]
+
+        if condi1 or condi2 or (rightHand and condi3_right) or (not rightHand and condi3_left):
+            word = "Put your hand vertically"
+        else: 
+            # if right hand
+            if rightHand:
+                word = "Right hand: "
+                # thumb
+                if handPoints[thumbCoordinate[0]][0] > handPoints[thumbCoordinate[1]][0]:
+                    count[0] = "1"
+            
+            # if left hand
+            else: 
+                word = "Left hand: "
+                # thumb
+                if handPoints[thumbCoordinate[0]][0] < handPoints[thumbCoordinate[1]][0]: 
+                    count[0] = "1"
+
+            # other fingers
+            for index, coordinates in enumerate(fingerCoordinates):
+                if handPoints[coordinates[0]][1] < handPoints[coordinates[2]][1]:
+                    count[index + 1] = "1"
+
+            word = word +  ' '.join(count)
+
+        cv2.putText(img, str(word), (40,80), cv2.FONT_HERSHEY_PLAIN, 3, (0,255,0), 3)
 
     cv2.imshow("Finger Counter", img)
     cv2.waitKey(1)
