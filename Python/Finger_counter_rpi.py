@@ -14,6 +14,7 @@ fingerCoordinates = [(8, 7, 6, 5), (12, 11, 10, 9), (16, 15, 14, 13), (20, 19, 1
 
 while True:
     success, img = cap.read()
+    img = cv2.flip(img, 0)
     imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
     # process hand image with mediapipe
