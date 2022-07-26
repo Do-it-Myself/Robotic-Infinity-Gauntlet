@@ -101,6 +101,8 @@ while True:
     for index, servo in enumerate(servo_list):
         if count[index] == "0":
             print(str(index) + ": close")
+            servo.value = -1
         elif count[index] == "1":
             print(str(index) + ": open")
+            servo.value = 1
     print("")
