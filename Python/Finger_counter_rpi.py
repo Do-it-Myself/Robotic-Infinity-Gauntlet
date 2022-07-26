@@ -43,14 +43,14 @@ while True:
         # detect left or right hand
         rightHand = False
 
-        if handPoints[fingerCoordinates[0][3]][0] > handPoints[fingerCoordinates[3][3]][0]:
+        if handPoints[fingerCoordinates[0][3]][0] < handPoints[fingerCoordinates[3][3]][0]:
             rightHand = True
         
         # detect whether the hand is placed properly or not
         condi1 = handPoints[thumbCoordinate[3]][1] > handPoints[thumbCoordinate[4]][1]
         condi2 = handPoints[fingerCoordinates[3][3]][1] > handPoints[thumbCoordinate[4]][1]
-        condi3_right = handPoints[fingerCoordinates[0][3]][0] < handPoints[thumbCoordinate[4]][0]
-        condi3_left = handPoints[fingerCoordinates[0][3]][0] > handPoints[thumbCoordinate[4]][0]
+        condi3_right = handPoints[fingerCoordinates[0][3]][0] > handPoints[thumbCoordinate[4]][0]
+        condi3_left = handPoints[fingerCoordinates[0][3]][0] < handPoints[thumbCoordinate[4]][0]
 
         if condi1 or condi2 or (rightHand and condi3_right) or (not rightHand and condi3_left):
             word = "Put your hand properly"
@@ -59,14 +59,14 @@ while True:
             if rightHand:
                 word = "Right hand: "
                 # thumb
-                if handPoints[thumbCoordinate[0]][0] > handPoints[thumbCoordinate[1]][0]:
+                if handPoints[thumbCoordinate[0]][0] < handPoints[thumbCoordinate[1]][0]:
                     count[0] = "1"
             
             # if left hand
             else: 
                 word = "Left hand: "
                 # thumb
-                if handPoints[thumbCoordinate[0]][0] < handPoints[thumbCoordinate[1]][0]: 
+                if handPoints[thumbCoordinate[0]][0] > handPoints[thumbCoordinate[1]][0]: 
                     count[0] = "1"
 
             # other fingers
