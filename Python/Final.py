@@ -63,6 +63,11 @@ while True:
         condi3_right = handPoints[fingerCoordinates[0][3]][0] > handPoints[thumbCoordinate[4]][0]
         condi3_left = handPoints[fingerCoordinates[0][3]][0] < handPoints[thumbCoordinate[4]][0]
 
+
+        # reset count
+        count = ["0", "0", "0", "0", "0"]
+
+        # check fingers
         if condi1 or condi2 or (rightHand and condi3_right) or (not rightHand and condi3_left):
             word = "Put your hand properly"
         else: 
