@@ -9,8 +9,9 @@ import mediapipe as mp
 
 ## opencv & mediapipe
 cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 960)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 540)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 480)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 270)
+cap.set(cv2.CAP_PROP_FPS, 2)
 
 mpHands = mp.solutions.hands # hands.py module
 hands = mpHands.Hands() # object with class "Hands" in hands.py module
