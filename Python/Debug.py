@@ -4,6 +4,9 @@ import mediapipe as mp
 
 ## opencv & mediapipe
 cap = cv2.VideoCapture(0)
+mpHands = mp.solutions.hands # hands.py module
+hands = mpHands.Hands() # object with class "Hands" in hands.py module
+mpDraw = mp.solutions.drawing_utils
 
 ## servo
 servo1 = Servo(23, min_pulse_width = 0.33/1000)
@@ -17,6 +20,10 @@ while True:
     success, img = cap.read()
     img = cv2.flip(img, 0)
     imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+    # process hand image with mediapipe
+    results = hands.process(imgRGB)
+    multiLandMarks = results.multi_hand_landmarks
 
     cv2.imshow("Finger Counter", img)
     cv2.waitKey(1)
