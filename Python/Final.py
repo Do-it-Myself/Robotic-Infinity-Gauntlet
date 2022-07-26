@@ -14,6 +14,8 @@ hands = mpHands.Hands() # object with class "Hands" in hands.py module
 mpDraw = mp.solutions.drawing_utils
 thumbCoordinate = (4, 3, 2, 1, 0)
 fingerCoordinates = [(8, 7, 6, 5), (12, 11, 10, 9), (16, 15, 14, 13), (20, 19, 18, 17)]
+count = ["0", "0", "0", "0", "0"]
+word = "Nothing"
 
 ## servo
 servo1 = Servo(23, min_pulse_width = 0.33/1000)
@@ -48,9 +50,6 @@ while True:
         # label hand points
         for point in handPoints:
             cv2.circle(img, point, 5, (0, 0, 255), cv2.FILLED)
-
-        count = ["0", "0", "0", "0", "0"]
-        word = "Nothing"
 
         # detect left or right hand
         rightHand = False
