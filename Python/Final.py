@@ -9,6 +9,9 @@ import mediapipe as mp
 
 ## opencv & mediapipe
 cap = cv2.VideoCapture(0)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 960)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 540)
+
 mpHands = mp.solutions.hands # hands.py module
 hands = mpHands.Hands() # object with class "Hands" in hands.py module
 mpDraw = mp.solutions.drawing_utils
@@ -101,8 +104,8 @@ while True:
     for index, servo in enumerate(servo_list):
         if count[index] == "0":
             print(str(index) + ": close")
-            servo.value = -1
+            #servo.value = -1
         elif count[index] == "1":
             print(str(index) + ": open")
-            servo.value = 1
+            #servo.value = 1
     print("")
