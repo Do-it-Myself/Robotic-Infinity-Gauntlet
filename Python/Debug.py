@@ -7,6 +7,8 @@ cap = cv2.VideoCapture(0)
 mpHands = mp.solutions.hands # hands.py module
 hands = mpHands.Hands() # object with class "Hands" in hands.py module
 mpDraw = mp.solutions.drawing_utils
+thumbCoordinate = (4, 3, 2, 1, 0)
+fingerCoordinates = [(8, 7, 6, 5), (12, 11, 10, 9), (16, 15, 14, 13), (20, 19, 18, 17)]
 
 ## servo
 servo1 = Servo(23, min_pulse_width = 0.33/1000)
