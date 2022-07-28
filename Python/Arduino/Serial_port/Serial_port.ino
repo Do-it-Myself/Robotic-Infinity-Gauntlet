@@ -4,7 +4,9 @@ void setup() {
  Serial.setTimeout(1);
 }
 void loop() {
- while (!Serial.available());
+ while (!Serial.available()) {
+  Serial.println("Not available");
+ }
  x = Serial.readString().toInt();
  Serial.print(x + 1);
 }
