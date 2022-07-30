@@ -1,5 +1,5 @@
 # define LED 7
-String input ;  
+String input;  
 
 void setup() {
   Serial.begin(9600);
