@@ -24,23 +24,35 @@ void setup() {
   pinMode(finger5, OUTPUT);
 
   servo1.attach(finger1);
-  //servo2.attach(finger2);
-  //servo3.attach(finger3);
-  //servo4.attach(finger4);
-  //servo5.attach(finger5);
+  servo2.attach(finger2);
+  servo3.attach(finger3);
+  servo4.attach(finger4);
+  servo5.attach(finger5);
 }
 
 void loop () {
+  servo1.write(140);
+  delay(500);
+  servo2.write(165);
+  delay(500);
   servo1.write(0);
-  //servo2.write(0);
-  //servo3.write(0);
-  //servo4.write(0);
-  //servo5.write(0);
   delay(1000);
-  servo1.write(165);
-  //servo2.write(165);
-  //servo3.write(165);
-  //servo4.write(165);
-  //servo5.write(165);
-  delay(2000);
+  servo2.write(0);
+  delay(1000);
 }
+
+/* void loop () {
+  servo1.write(140);
+  servo2.write(165);
+  servo3.write(165);
+  servo4.write(165);
+  servo5.write(165);
+  delay(1000);
+  servo1.write(0);
+  servo2.write(0);
+  servo3.write(0);
+  servo4.write(0);
+  servo5.write(0);
+  delay(3000);
+}
+*/
