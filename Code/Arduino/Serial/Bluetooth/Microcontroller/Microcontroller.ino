@@ -1,7 +1,7 @@
 # include <SoftwareSerial.h>
 # define LED 7
-# define RX 3
-# define TX 2
+# define RX A0
+# define TX A1
 String input;  
 
 SoftwareSerial Bluetooth(RX, TX);

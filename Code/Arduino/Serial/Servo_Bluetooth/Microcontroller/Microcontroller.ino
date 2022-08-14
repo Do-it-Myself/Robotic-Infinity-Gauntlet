@@ -1,8 +1,8 @@
 # include <SoftwareSerial.h>
 # include <Servo.h>
 
-# define RX 3
-# define TX 2
+# define RX A0
+# define TX A1
 # define finger1 11
 # define finger2 10
 # define finger3 9
@@ -50,6 +50,12 @@ void setup() {
   servo4.attach(finger4);
   servo5.attach(finger5);
 
+  for (int i = 0; i < 5; i++){
+    finger_close(i);
+  }
+
+  delay(1500);
+  
   for (int i = 0; i < 5; i++){
     finger_open(i);
   }

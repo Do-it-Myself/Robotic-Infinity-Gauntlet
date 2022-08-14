@@ -2,13 +2,9 @@
 # GitHub: https://github.com/AISCIENCES/Ytube-finger-counter/blob/main/main.py
 # Library for OpenCV & Mediapipe: https://pypi.org/project/mediapipe-rpi4/
 
-import serial
 import time
 import cv2
 import mediapipe as mp
-
-SERVOserial = serial.Serial('COM24', 9600)
-SERVOserial.timeout = 1
 
 cap = cv2.VideoCapture(0)
 
@@ -22,6 +18,8 @@ fingerCoordinates = [(8, 7, 6, 5), (12, 11, 10, 9), (16, 15, 14, 13), (20, 19, 1
 sendPrevPrev = "11111"
 sendPrev = "11111"
 send = "11111"
+send_store = None
+
 timeConst = 0
 
 while True:
@@ -94,7 +92,6 @@ while True:
                 print("sendPrevPrev:", sendPrevPrev)
                 print("send:", send)
                 print("")
-                SERVOserial.write(send.encode())
             timeConst = time.time()
             sendPrevPrev = sendPrev
             sendPrev = send
