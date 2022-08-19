@@ -3,11 +3,11 @@
 
 # define RX A0
 # define TX A1
-# define finger1 11
-# define finger2 10
+# define finger1 5
+# define finger2 6
 # define finger3 9
-# define finger4 6
-# define finger5 5
+# define finger4 10
+# define finger5 11
 
 Servo servo1;
 Servo servo2;
